@@ -11,11 +11,8 @@ public class Binario implements Runnable{
 	
 	@Override
 	public void run() {
-
-		
-		System.out.println(n+" es "+convierte(n,2)+" en binario "+convierte(n,8)+" en octal");
+		System.out.println(n+" es "+convierte(n,2)+" en binario "+convierte(n,8)+" en octal "+convierte(n,16)+" en hexadecimal");
 	}
-
 
 	private String convierte(int n,int base) {
 		int divi=n;
@@ -23,10 +20,21 @@ public class Binario implements Runnable{
 		String resultado="";
 		do {
 			num=(int)(divi/base);
-			resultado=String.valueOf(divi%base).concat(resultado);
+			resultado=resto(divi%base).concat(resultado);
 			divi=num;
 		}while (divi>=base);
-		resultado=String.valueOf(divi).concat(resultado);
+		resultado=resto(divi).concat(resultado);
 		return resultado;
+	}
+	
+	private String sacaLetra(int r) {
+		return String.valueOf((char)((r-10)+'A'));
+	}
+	
+	private String resto(int r) {
+		if (r>9)
+			return sacaLetra(r);
+		else
+			return String.valueOf(r);
 	}
 }
